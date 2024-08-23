@@ -1,0 +1,10 @@
+{
+  "plugins": ["@prettier/plugin-ruby"],
+  "rubySingleQuote": false,
+  "printWidth": 80,
+  "rubyArrayLiteral": true,
+  "rubyHashLabel": true,
+  "rubyModifier": true,
+  "tabWidth": 2,
+  "trailingComma": "es5"
+}

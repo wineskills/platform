@@ -2,7 +2,9 @@
   "name": "app",
   "private": true,
   "devDependencies": {
-    "esbuild": "^0.23.1"
+    "@prettier/plugin-ruby": "^4.0.4",
+    "esbuild": "^0.23.1",
+    "prettier": "^3.3.3"
   },
   "scripts": {
     "build": "esbuild app/javascript/*.* --bundle --sourcemap --format=esm --outdir=app/assets/builds --public-path=/assets",
