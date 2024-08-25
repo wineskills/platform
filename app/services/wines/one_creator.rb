@@ -11,6 +11,8 @@ class Wines::OneCreator
     wine.save!
 
     assign_picture(wine)
+
+    puts "Wine #{wine.name} created/updated"
   end
 
   private
