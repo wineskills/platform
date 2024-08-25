@@ -30,6 +30,16 @@ services:
       - MINIO_ROOT_PASSWORD=wineskills
       - MINIO_DEFAULT_BUCKETS=wineskills
 
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.15.0
+    environment:
+      - xpack.security.enabled=false
+      - "discovery.type=single-node"
+    networks:
+      - app
+    ports:
+      - 9200:9200
+
 networks:
   app:
     driver: bridge
