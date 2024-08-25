@@ -31,7 +31,17 @@ class Wine < ApplicationRecord
                           class_name: "Wines::Harmonize",
                           association_foreign_key: "wines_harmonize_id"
 
-  validates :dataset_id, :name, presence: true
+  has_one_attached :picture
+
+  validates :dataset_id,
+            :name,
+            :alcohol_by_volume,
+            :acidity,
+            :country_code,
+            :vintages,
+            :kind,
+            :body,
+            presence: true
 
   def country
     ISO3166::Country.new(self.country_code)

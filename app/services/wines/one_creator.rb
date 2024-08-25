@@ -7,6 +7,16 @@ class Wines::OneCreator
 
   def call
     wine = Wine.find_or_initialize_by(dataset_id: attributes[:dataset_id])
+    assign_attributes(wine)
+    wine.save!
+
+    assign_picture(wine)
+  end
+
+  private
+
+  # Assign attributes to wine
+  def assign_attributes(wine)
     wine.name = attributes[:name]
     wine.alcohol_by_volume = attributes[:alcohol_by_volume]
     wine.acidity = attributes[:acidity].downcase
@@ -55,7 +65,13 @@ class Wines::OneCreator
         winery.name = attributes[:winery_name]
         winery.website_link = attributes[:winery_website_link]
       end
+  end
 
-    wine.save
+  # Assign picture to wine
+  def assign_picture(wine)
+    picture = Rails.root.join("data", "pictures", "#{wine.dataset_id}.jpeg")
+    if picture.exist?
+      wine.picture.attach(io: File.open(picture), filename: picture.basename)
+    end
   end
 end
