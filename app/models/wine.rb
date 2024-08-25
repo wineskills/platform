@@ -8,7 +8,7 @@ class Wine < ApplicationRecord
          rose: "rose",
          white: "white",
        },
-       _prefix: true
+       suffix: true
 
   enum :body,
        {
@@ -18,7 +18,9 @@ class Wine < ApplicationRecord
          full: "full",
          very_full: "very_full",
        },
-       _prefix: true
+       suffix: true
+
+  enum :acidity, { low: "low", medium: "medium", high: "high" }, suffix: true
 
   belongs_to :elaborate, class_name: "Wines::Elaborate"
   belongs_to :region, class_name: "Wines::Region"
@@ -42,6 +44,9 @@ class Wine < ApplicationRecord
             :kind,
             :body,
             presence: true
+
+  validates :country_code, inclusion: { in: ISO3166::Country.codes }
+  validates :alcohol_by_volume, inclusion: { in: 0.0..1.0 }
 
   def country
     ISO3166::Country.new(self.country_code)

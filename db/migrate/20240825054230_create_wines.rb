@@ -7,7 +7,7 @@ class CreateWines < ActiveRecord::Migration[7.2]
     create_table :wines, id: :uuid do |t|
       t.integer :dataset_id
       t.string :name
-      t.decimal :alcohol_by_volume, precision: 3, scale: 1
+      t.decimal :alcohol_by_volume, precision: 3, scale: 3
       t.string :country_code
       t.integer :vintages, array: true, default: []
 

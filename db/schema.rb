@@ -52,7 +52,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_08_25_061645) do
   create_table "wines", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.integer "dataset_id"
     t.string "name"
-    t.decimal "alcohol_by_volume", precision: 3, scale: 1
+    t.decimal "alcohol_by_volume", precision: 3, scale: 3
     t.string "country_code"
     t.integer "vintages", default: [], array: true
     t.enum "kind", default: "red", null: false, enum_type: "wine_kind"

@@ -18,7 +18,7 @@ class Wines::OneCreator
   # Assign attributes to wine
   def assign_attributes(wine)
     wine.name = attributes[:name]
-    wine.alcohol_by_volume = attributes[:alcohol_by_volume]
+    wine.alcohol_by_volume = attributes[:alcohol_by_volume].to_f / 100
     wine.acidity = attributes[:acidity].downcase
     wine.country_code = attributes[:country_code]
     wine.vintages = eval(attributes[:vintages])

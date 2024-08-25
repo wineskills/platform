@@ -4,6 +4,12 @@ class Wines::Synchronizer
   attr_reader :file_path
 
   def initialize(file_path)
+    unless file_path.is_a?(Pathname)
+      raise ArgumentError, "file_path is not a Pathname"
+    end
+
+    raise ArgumentError, "file_path does not exist" unless file_path.exist?
+
     @file_path = file_path
   end
 
@@ -28,7 +34,7 @@ class Wines::Synchronizer
         vintages: row[16],
       }
 
-      WineCreator.new(attributes).call
+      Wines::OneCreator.new(attributes).call
     end
   end
 end
