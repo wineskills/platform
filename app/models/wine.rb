@@ -1,4 +1,8 @@
 class Wine < ApplicationRecord
+  extend Pagy::Searchkick
+
+  searchkick
+
   enum :kind,
        {
          red: "red",
@@ -35,6 +39,9 @@ class Wine < ApplicationRecord
 
   has_one_attached :picture
 
+  scope :search_import,
+        -> { includes(:region, :winery, :elaborate, :grapes, :harmonizes) }
+
   validates :dataset_id,
             :name,
             :alcohol_by_volume,
@@ -47,6 +54,20 @@ class Wine < ApplicationRecord
 
   validates :country_code, inclusion: { in: ISO3166::Country.codes }
   validates :alcohol_by_volume, inclusion: { in: 0.0..1.0 }
+
+  def search_data
+    {
+      name: name,
+      kind: kind,
+      body: body,
+      region_name: region.name,
+      winery_name: winery.name,
+      country_name: country.iso_short_name,
+      elaborate_name: elaborate.name,
+      grapes_names: grapes.pluck(:name).join(" "),
+      harmonizes_names: harmonizes.pluck(:name).join(" "),
+    }
+  end
 
   def country
     ISO3166::Country.new(self.country_code)
