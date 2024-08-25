@@ -6,14 +6,26 @@ module Wineskills
     bind ::WineskillsRpc::Wines::Service
 
     ##
-    # @return [Wineskils::GetWinesResponse] The wines response
+    # @return [WineskillsRpc::GetWinesResponse] The wines response
     #
     def get_wines
       wines =
         Wine
-          .all
-          .limit(10)
-          .map { |wine| WineskillsRpc::Wine.new(name: wine.name) }
+          .includes(:elaborate, :region, :winery)
+          .decorate
+          .map do |wine|
+            WineskillsRpc::Wine.new(
+              name: wine.name,
+              kind: wine.kind,
+              body: wine.body,
+              acidity: wine.acidity,
+              alcohol_by_volume: wine.alcohol_by_volume,
+              country: wine.country.iso_short_name,
+              elaborate: wine.elaborate.name,
+              region: wine.region.name,
+              winery: wine.winery.name,
+            )
+          end
 
       WineskillsRpc::GetWinesResponse.new(wines:)
     rescue StandardError => e

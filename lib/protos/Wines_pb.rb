@@ -5,7 +5,7 @@
 require 'google/protobuf'
 
 
-descriptor_data = "\n\x12protos/Wines.proto\x12\x0ewineskills_rpc\"\x11\n\x0fGetWinesRequest\"7\n\x10GetWinesResponse\x12#\n\x05wines\x18\x01 \x03(\x0b\x32\x14.wineskills_rpc.Wine\"\x14\n\x04Wine\x12\x0c\n\x04name\x18\x01 \x01(\t2X\n\x05Wines\x12O\n\x08GetWines\x12\x1f.wineskills_rpc.GetWinesRequest\x1a .wineskills_rpc.GetWinesResponse\"\x00\x62\x06proto3"
+descriptor_data = "\n\x12protos/Wines.proto\x12\x0ewineskills_rpc\"\x11\n\x0fGetWinesRequest\"7\n\x10GetWinesResponse\x12#\n\x05wines\x18\x01 \x03(\x0b\x32\x14.wineskills_rpc.Wine\"\xa0\x01\n\x04Wine\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x0c\n\x04kind\x18\x02 \x01(\t\x12\x0c\n\x04\x62ody\x18\x03 \x01(\t\x12\x0f\n\x07\x61\x63idity\x18\x04 \x01(\t\x12\x11\n\telaborate\x18\x05 \x01(\t\x12\x19\n\x11\x61lcohol_by_volume\x18\x06 \x01(\t\x12\x0f\n\x07\x63ountry\x18\x07 \x01(\t\x12\x0e\n\x06region\x18\x08 \x01(\t\x12\x0e\n\x06winery\x18\t \x01(\t2X\n\x05Wines\x12O\n\x08GetWines\x12\x1f.wineskills_rpc.GetWinesRequest\x1a .wineskills_rpc.GetWinesResponse\"\x00\x62\x06proto3"
 
 pool = Google::Protobuf::DescriptorPool.generated_pool
 pool.add_serialized_file(descriptor_data)
