@@ -68,7 +68,7 @@
                 %dd.mt-1.text-sm.leading-6.text-gray-700.sm:col-span-2.sm:mt-0
                   = @wine.vintages
 
-    / Product image
-    .mt-10.lg:col-start-2.lg:row-span-2.lg:mt-0.lg:self-center
-      .aspect-h-1.aspect-w-1.overflow-hidden.rounded-lg
-        = image_tag(@wine.picture, class: "h-ful w-full object-cover object-center", alt: "")
+    - if @wine.picture.attached?
+      .mt-10.lg:col-start-2.lg:row-span-2.lg:mt-0.lg:self-center
+        .aspect-h-1.aspect-w-1.overflow-hidden.rounded-lg
+          = image_tag(@wine.picture, class: "h-ful w-full object-cover object-center", alt: "")
