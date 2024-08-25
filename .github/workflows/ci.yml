@@ -61,6 +61,8 @@ jobs:
       - name: Install packages
         run: sudo apt-get update && sudo apt-get install --no-install-recommends -y google-chrome-stable curl libjemalloc2 libsqlite3-0 libvips
 
+      - uses: ankane/setup-elasticsearch@v1
+
       - name: Checkout code
         uses: actions/checkout@v4
 
@@ -74,6 +76,7 @@ jobs:
         env:
           RAILS_ENV: test
           DATABASE_URL: "postgresql://postgres:postgres@localhost:${{job.services.postgres.ports[5432]}}/test?encoding=utf8&pool=10"
+          ELASTICSEARCH_URL: "http://localhost:${{job.services.elasticsearch.ports[9200]}}"
           # REDIS_URL: redis://localhost:6379/0
         run: bin/rails db:test:prepare test test:system
 
