@@ -47,6 +47,9 @@ gem "loaf"
 gem "pagy"
 gem "searchkick"
 gem "elasticsearch"
+gem "gruf"
+gem "grpc", require: false
+gem "grpc-tools", require: false
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem

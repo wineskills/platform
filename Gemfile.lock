@@ -167,6 +167,53 @@ GEM
     ffi (1.17.0-x86_64-linux-musl)
     globalid (1.2.1)
       activesupport (>= 6.1)
+    google-protobuf (4.27.3)
+      bigdecimal
+      rake (>= 13)
+    google-protobuf (4.27.3-aarch64-linux)
+      bigdecimal
+      rake (>= 13)
+    google-protobuf (4.27.3-arm64-darwin)
+      bigdecimal
+      rake (>= 13)
+    google-protobuf (4.27.3-x86-linux)
+      bigdecimal
+      rake (>= 13)
+    google-protobuf (4.27.3-x86_64-darwin)
+      bigdecimal
+      rake (>= 13)
+    google-protobuf (4.27.3-x86_64-linux)
+      bigdecimal
+      rake (>= 13)
+    googleapis-common-protos-types (1.15.0)
+      google-protobuf (>= 3.18, < 5.a)
+    grpc (1.65.2)
+      google-protobuf (>= 3.25, < 5.0)
+      googleapis-common-protos-types (~> 1.0)
+    grpc (1.65.2-aarch64-linux)
+      google-protobuf (>= 3.25, < 5.0)
+      googleapis-common-protos-types (~> 1.0)
+    grpc (1.65.2-arm64-darwin)
+      google-protobuf (>= 3.25, < 5.0)
+      googleapis-common-protos-types (~> 1.0)
+    grpc (1.65.2-x86-linux)
+      google-protobuf (>= 3.25, < 5.0)
+      googleapis-common-protos-types (~> 1.0)
+    grpc (1.65.2-x86_64-darwin)
+      google-protobuf (>= 3.25, < 5.0)
+      googleapis-common-protos-types (~> 1.0)
+    grpc (1.65.2-x86_64-linux)
+      google-protobuf (>= 3.25, < 5.0)
+      googleapis-common-protos-types (~> 1.0)
+    grpc-tools (1.65.2)
+    gruf (2.20.1)
+      activesupport (> 4)
+      concurrent-ruby (> 1)
+      grpc (~> 1.10)
+      grpc-tools (~> 1.10)
+      json (>= 2.3)
+      slop (>= 4.6)
+      zeitwerk (>= 2)
     haml (6.3.0)
       temple (>= 0.8.2)
       thor
@@ -361,6 +408,7 @@ GEM
       logger
       rack (>= 2.2.4)
       redis-client (>= 0.22.2)
+    slop (4.10.1)
     sprockets (4.2.1)
       concurrent-ruby (~> 1.0)
       rack (>= 2.2.4, < 4)
@@ -440,6 +488,9 @@ DEPENDENCIES
   elasticsearch
   factory_bot_rails
   faker
+  grpc
+  grpc-tools
+  gruf
   haml-rails
   html2haml
   image_processing (~> 1.2)
