@@ -1,0 +1,39 @@
+services:
+  db:
+    image: postgres:latest
+    ports:
+      - 5432:5432
+    networks:
+      - app
+    environment:
+      POSTGRES_USER: "wineskills"
+      POSTGRES_PASSWORD: "wineskills"
+
+  redis:
+    image: redis:latest
+    ports:
+      - 6379:6379
+    networks:
+      - app
+
+  minio:
+    image: bitnami/minio
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    networks:
+      - app
+    volumes:
+      - "minio:/bitnami/minio/data"
+    environment:
+      - MINIO_ROOT_USER=wineskills
+      - MINIO_ROOT_PASSWORD=wineskills
+      - MINIO_DEFAULT_BUCKETS=wineskills
+
+networks:
+  app:
+    driver: bridge
+
+volumes:
+  minio:
+    driver: local
