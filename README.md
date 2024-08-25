@@ -1,24 +1,149 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is the README of the Wineskills project which intents to import, display and search wines.
 
-Things you may want to cover:
+### /!\ THIS IS A DEMO PROJECT /!\
 
-* Ruby version
+The platform will serve web pages and expose an API using gRPC. It will let you find details about wines listed in the page, go to the wine details and search for wines with specific criterias, as
+- harmonizes
+- grapes
+- kind
+- body
+- acidity
+- elaborate
+- region
+- winery
 
-* System dependencies
+![Screenshot 2024-08-25 at 18 55 39](https://github.com/user-attachments/assets/a9150285-cd96-470d-8f83-5f15cbe655e4)
 
-* Configuration
+# Informations
 
-* Database creation
+The project has been built with tailwindcss and uses
+- Postgresql
+- Redis (for async jobs)
+- Elastisearch (for searches)
+- Minio (for assets storage)
 
-* Database initialization
+## Dependencies
+- `active storage` for assets storage on minio with S3 protocols
+- `haml`
+- `countries` gem (for i18n and more)
+- `draper` for decorators
+- `loaf` for breadcrumbs
+- `pagy` for paginations
+- `searchkick` for searchs with elasticsearch
+- `gruf` for gRPC client/server
+- `dotenv` for env load
+- `faker` for fake data loadings
+- `factory_bot` for test factories
 
-* How to run the test suite
+Wines dataset has been fetched from https://github.com/rogerioxavier/X-Wines
 
-* Services (job queues, cache servers, search engines, etc.)
+The gRPC service is running by default on `0.0.0.0:50051`
 
-* Deployment instructions
+It works along two other projects:
 
-* ...
+## Protos
+
+https://github.com/wineskills/protos
+
+A repository to store and share gRPC protos with the platform and the ruby-client repositories.
+
+## Ruby client
+
+https://github.com/wineskills/ruby-client
+
+The ruby client is a gem ready to consume the API through gRPC.
+
+The client has been deployed on Rubygems: https://rubygems.org/gems/wineskills
+
+# Prerequisites
+
+- Docker with composer
+- Ruby 3.3.4
+- Rails 7.2.0
+
+# Start
+
+## Server
+
+```bash
+git clone https://github.com/wineskills/platform
+cd platform
+docker compose up -d # wait 10s until elasticsearch is ready
+rake db:prepare
+
+./bin/dev
+open "http://localhost:3000"
+```
+
+## Client
+
+From the project sources:
+
+```bash
+git clone https://github.com/wineskills/ruby-client
+cd ruby-client
+gem build wineskills.gemspec
+gem install wineskills-0.1.0.gem
+
+# Fetch all wines
+GRPC_SERVICES_URL=127.0.0.1:50051 wineskills wines
+```
+
+From Rubygems:
+```bash
+gem install wineskills
+
+# Fetch all wines
+GRPC_SERVICES_URL=127.0.0.1:50051 wineskills wines
+```
+
+# Tests
+
+```bash
+git clone https://github.com/wineskills/platform
+cd platform
+docker compose up -d # wait 10s until elasticsearch is ready
+
+rails test
+```
+
+```bash
+yarn install v1.22.22
+[1/4] 🔍  Resolving packages...
+success Already up-to-date.
+✨  Done in 0.08s.
+yarn run v1.22.22
+$ esbuild app/javascript/*.* --bundle --sourcemap --format=esm --outdir=app/assets/builds --public-path=/assets
+
+  app/assets/builds/application.js      261.9kb
+  app/assets/builds/application.js.map  481.9kb
+
+✨  Done in 0.33s.
+yarn install v1.22.22
+[1/4] 🔍  Resolving packages...
+success Already up-to-date.
+✨  Done in 0.05s.
+yarn run v1.22.22
+$ tailwindcss -i ./app/assets/stylesheets/application.tailwind.css -o ./app/assets/builds/application.css --minify
+
+Rebuilding...
+
+Done in 161ms.
+✨  Done in 0.69s.
+Running 15 tests in a single process (parallelization threshold is 50)
+Run options: --seed 39652
+
+# Running:
+
+...............
+
+Finished in 1.083148s, 13.8485 runs/s, 13.8485 assertions/s.
+15 runs, 15 assertions, 0 failures, 0 errors, 0 skips
+```
+
+# TODO
+- [ ] Add the ability to search wines through gRPC
+- [ ] Deploy the project and hard code the ruby client gRPC services url to it
+- [ ] Deploy on minikube

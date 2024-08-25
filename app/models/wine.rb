@@ -55,6 +55,8 @@ class Wine < ApplicationRecord
   validates :country_code, inclusion: { in: ISO3166::Country.codes }
   validates :alcohol_by_volume, inclusion: { in: 0.0..1.0 }
 
+  after_commit :reindex
+
   def search_data
     {
       name: name,
