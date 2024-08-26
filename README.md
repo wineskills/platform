@@ -4,7 +4,7 @@ This is the README of the Wineskills project which intents to import, display an
 
 ### /!\ THIS IS A DEMO PROJECT /!\
 
-The platform will serve web pages and expose an API using gRPC. It will let you find details about wines listed in the page, go to the wine details and search for wines with specific criterias, as
+The platform will serve web pages and expose an API using gRPC. It will let you find wines listed in the page, access to a wine details and search for wines with specific criterias, as
 - harmonizes
 - grapes
 - kind
