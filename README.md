@@ -93,10 +93,13 @@ GRPC_SERVICES_URL=127.0.0.1:50051 wineskills wines
 
 From Rubygems:
 ```bash
-gem install wineskills
+gem install wineskills # CURRENT VERSION=0.1.1
 
 # Fetch all wines
 GRPC_SERVICES_URL=127.0.0.1:50051 wineskills wines
+
+# Search wines
+GRPC_SERVICES_URL=127.0.0.1:50051 wineskills search beef
 ```
 
 # Tests
@@ -144,7 +147,7 @@ Finished in 1.083148s, 13.8485 runs/s, 13.8485 assertions/s.
 ```
 
 # What's next?
-- [ ] Add the ability to search wines via the API
+- [x] Add the ability to search wines via the API
 - [ ] Add pagination on API
 - [ ] Deploy the project and hard code the ruby client gRPC services url to it
 - [ ] Deploy on minikube
