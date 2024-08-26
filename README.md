@@ -143,7 +143,8 @@ Finished in 1.083148s, 13.8485 runs/s, 13.8485 assertions/s.
 15 runs, 15 assertions, 0 failures, 0 errors, 0 skips
 ```
 
-# TODO
-- [ ] Add the ability to search wines through gRPC
+# What's next?
+- [ ] Add the ability to search wines via the API
+- [ ] Add pagination on API
 - [ ] Deploy the project and hard code the ruby client gRPC services url to it
 - [ ] Deploy on minikube
