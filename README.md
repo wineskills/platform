@@ -85,7 +85,7 @@ From the project sources:
 git clone https://github.com/wineskills/ruby-client
 cd ruby-client
 gem build wineskills.gemspec
-gem install wineskills-0.1.0.gem
+gem install wineskills-0.1.1.gem
 
 # Fetch all wines
 GRPC_SERVICES_URL=127.0.0.1:50051 wineskills wines
