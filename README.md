@@ -91,7 +91,7 @@ gem install wineskills-0.1.0.gem
 GRPC_SERVICES_URL=127.0.0.1:50051 wineskills wines
 ```
 
-From Rubygems:
+From Rubygems: https://rubygems.org/gems/wineskills
 ```bash
 gem install wineskills # CURRENT VERSION=0.1.1
 
