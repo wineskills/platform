@@ -1,0 +1,74 @@
+.bg-white
+  .mx-auto.py-16.lg:grid.lg:grid-cols-2.lg:gap-x-8
+    / Product details
+    .lg:max-w-lg.lg:self-end
+      .mt-4
+        %h1.text-3xl.font-bold.tracking-tight.text-gray-900.sm:text-4xl= @wine.name
+
+      %section.mt-4{"aria-labelledby" => "information-heading"}
+        %div
+          .mt-6.border-t.border-gray-100
+            %dl.divide-y.divide-gray-100
+              .px-4.py-6.sm:grid.sm:grid-cols-3.sm:gap-4.sm:px-0
+                %dt.text-sm.font-medium.leading-6.text-gray-900= t(:kind)
+                %dd.mt-1.text-sm.leading-6.text-gray-700.sm:col-span-2.sm:mt-0
+                  = @wine.kind
+
+              .px-4.py-6.sm:grid.sm:grid-cols-3.sm:gap-4.sm:px-0
+                %dt.text-sm.font-medium.leading-6.text-gray-900= t(:body)
+                %dd.mt-1.text-sm.leading-6.text-gray-700.sm:col-span-2.sm:mt-0
+                  = @wine.body
+
+              .px-4.py-6.sm:grid.sm:grid-cols-3.sm:gap-4.sm:px-0
+                %dt.text-sm.font-medium.leading-6.text-gray-900= t(:acidity)
+                %dd.mt-1.text-sm.leading-6.text-gray-700.sm:col-span-2.sm:mt-0
+                  = @wine.acidity
+
+              .px-4.py-6.sm:grid.sm:grid-cols-3.sm:gap-4.sm:px-0
+                %dt.text-sm.font-medium.leading-6.text-gray-900= t(:elaborate)
+                %dd.mt-1.text-sm.leading-6.text-gray-700.sm:col-span-2.sm:mt-0
+                  = @wine.elaborate.name
+
+              .px-4.py-6.sm:grid.sm:grid-cols-3.sm:gap-4.sm:px-0
+                %dt.text-sm.font-medium.leading-6.text-gray-900= t(:alcohol_by_volume)
+                %dd.mt-1.text-sm.leading-6.text-gray-700.sm:col-span-2.sm:mt-0
+                  = @wine.alcohol_by_volume
+
+              .px-4.py-6.sm:grid.sm:grid-cols-3.sm:gap-4.sm:px-0
+                %dt.text-sm.font-medium.leading-6.text-gray-900= t(:country)
+                %dd.mt-1.text-sm.leading-6.text-gray-700.sm:col-span-2.sm:mt-0
+                  - @wine.country.try do |country|
+                    = country.emoji_flag
+                    = country.iso_short_name
+
+              .px-4.py-6.sm:grid.sm:grid-cols-3.sm:gap-4.sm:px-0
+                %dt.text-sm.font-medium.leading-6.text-gray-900= t(:region)
+                %dd.mt-1.text-sm.leading-6.text-gray-700.sm:col-span-2.sm:mt-0
+                  = @wine.region.name
+
+              .px-4.py-6.sm:grid.sm:grid-cols-3.sm:gap-4.sm:px-0
+                %dt.text-sm.font-medium.leading-6.text-gray-900= t(:winery)
+                %dd.mt-1.text-sm.leading-6.text-gray-700.sm:col-span-2.sm:mt-0
+                  - @wine.winery.try do |winery|
+                    = winery.name
+                    .text-xs= link_to winery.website_link, winery.website_link
+
+              .px-4.py-6.sm:grid.sm:grid-cols-3.sm:gap-4.sm:px-0
+                %dt.text-sm.font-medium.leading-6.text-gray-900= t(:harmonize)
+                %dd.mt-1.text-sm.leading-6.text-gray-700.sm:col-span-2.sm:mt-0
+                  = @wine.harmonizes
+
+              .px-4.py-6.sm:grid.sm:grid-cols-3.sm:gap-4.sm:px-0
+                %dt.text-sm.font-medium.leading-6.text-gray-900= t(:grapes)
+                %dd.mt-1.text-sm.leading-6.text-gray-700.sm:col-span-2.sm:mt-0
+                  = @wine.grapes
+
+              .px-4.py-6.sm:grid.sm:grid-cols-3.sm:gap-4.sm:px-0
+                %dt.text-sm.font-medium.leading-6.text-gray-900= t(:vintages)
+                %dd.mt-1.text-sm.leading-6.text-gray-700.sm:col-span-2.sm:mt-0
+                  = @wine.vintages
+
+    - if @wine.picture.attached?
+      .mt-10.lg:col-start-2.lg:row-span-2.lg:mt-0.lg:self-center
+        .aspect-h-1.aspect-w-1.overflow-hidden.rounded-lg
+          = image_tag(@wine.picture, class: "h-ful w-full object-cover object-center", alt: "")
